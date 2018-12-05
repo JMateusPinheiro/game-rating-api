@@ -2,22 +2,21 @@ package app.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import app.model.User;
-import app.repository.UserRepository;
+import app.model.Comment;
+import app.repository.CommentRepository;
 
 @Service
-public class UserService {
+public class CommentService {
 	
 	@Autowired
-	UserRepository userRepository;
+	CommentRepository commentRepository;
 	
 	ObjectMapper mapper = new ObjectMapper();
-
-	public String create(User user) {
+	
+	public String create(Comment comment) {
 		return "";
 	}
 	
@@ -29,12 +28,12 @@ public class UserService {
 		return "";
 	}
 	
-	public String update(int id, User user) {
+	public String update(int id, Comment comment) {
 		return "";
 	}
 	
 	public String delete(int id) {
 		return "";
 	}
-	
+
 }

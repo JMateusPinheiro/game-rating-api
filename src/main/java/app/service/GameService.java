@@ -18,13 +18,8 @@ public class GameService {
 	ObjectMapper mapper = new ObjectMapper();
 
 	public String create(Game game) {
-		try {
 			gameRepository.save(game);
-			return mapper.writeValueAsString("Game Saved");
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-			return null;
-		}
+			return "Game Saved";
 	}
 
 	public String getAll() {
@@ -46,30 +41,22 @@ public class GameService {
 	}
 
 	public String update(String id, Game game) {
-		try {
-			Game gameForUpdate = gameRepository.findById(id).get();
-			gameForUpdate.setId(game.getId());
-			gameForUpdate.setName(game.getName());
-			gameForUpdate.setDescription(game.getDescription());
-			gameForUpdate.setCategories(game.getCategories());
-			gameForUpdate.setYear(game.getYear());
-			gameForUpdate.setCriticalNote(game.getCriticalNote());
-			gameForUpdate.setPublicNotes(game.getPublicNotes());
-			gameForUpdate.setImageURL(game.getImageURL());
-			return mapper.writeValueAsString(gameRepository.save(gameForUpdate));
-		} catch (Exception e) {
-			return null;
-		}
+		Game gameForUpdate = gameRepository.findById(id).get();
+		gameForUpdate.setId(game.getId());
+		gameForUpdate.setName(game.getName());
+		gameForUpdate.setDescription(game.getDescription());
+		gameForUpdate.setCategories(game.getCategories());
+		gameForUpdate.setYear(game.getYear());
+		gameForUpdate.setCriticalNote(game.getCriticalNote());
+		gameForUpdate.setPublicNotes(game.getPublicNotes());
+		gameForUpdate.setImageURL(game.getImageURL());
+		gameRepository.save(gameForUpdate);
+		return "Game Updated";
 	}
 
 	public String delete(String id) {
-		try {
-			gameRepository.deleteById(id);
-			return mapper.writeValueAsString("Game Deleted");
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-			return null;
-		}
+		gameRepository.deleteById(id);
+		return "Game Deleted";
 	}
 
 }
